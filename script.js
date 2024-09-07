@@ -8,8 +8,34 @@ const gameboard = (function () {
   }
   return { makeBoard };
 })();
+let board = gameboard.makeBoard;
+console.table(board);
 
-console.table(gameboard.makeBoard);
+function createPlayer(name, token) {
+  return { name, token };
+}
+
+let firstPlayer = createPlayer('Max', 'x');
+let secondPlayer = createPlayer('Otto', 'o');
+console.log(firstPlayer);
+console.log(firstPlayer.token);
+
+function hasWon(token) {
+  if (
+    (board[0][0] === token && board[0][1] === token && board[0][2] === token) ||
+    (board[1][0] === token && board[1][1] === token && board[1][2] === token) ||
+    (board[2][0] === token && board[2][1] === token && board[2][2] === token) ||
+    (board[0][0] === token && board[1][0] === token && board[2][0] === token) ||
+    (board[1][0] === token && board[1][1] === token && board[1][2] === token) ||
+    (board[2][0] === token && board[2][1] === token && board[2][2] === token) ||
+    (board[0][0] === token && board[1][1] === token && board[2][2] === token) ||
+    (board[0][2] === token && board[1][1] === token && board[2][0] === token)
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 /*
 function move(token) {
@@ -21,8 +47,7 @@ function move(token) {
   console.table(board);
 }
 
-function createPlayer(name, token) {
-  return { name, token };
+
 }
 
 /*function createDisplayController() {
@@ -37,6 +62,5 @@ function createPlayer(name, token) {
     }
 }
 */ /*
-createPlayer('Max', 'x');
-createPlayer('Otto', 'o');
+
 /*move('x');*/
