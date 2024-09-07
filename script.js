@@ -1,57 +1,73 @@
 const gameboard = (function () {
-  let makeBoard = [[]];
+  let makeBoard = [[]]
   for (let r = 0; r < 3; ++r) {
-    makeBoard[r] = [];
+    makeBoard[r] = []
     for (let c = 0; c < 3; ++c) {
-      makeBoard[r][c] = '0';
+      makeBoard[r][c] = "-"
     }
   }
-  return { makeBoard };
-})();
-let board = gameboard.makeBoard;
-console.table(board);
+  return { makeBoard }
+})()
 
 function createPlayer(name, token) {
-  return { name, token };
+  return { name, token }
 }
 
-let firstPlayer = createPlayer('Max', 'x');
-let secondPlayer = createPlayer('Otto', 'o');
-console.log(firstPlayer);
-console.log(firstPlayer.token);
+let board = gameboard.makeBoard
+
+let firstPlayer = createPlayer("Max", "x")
+let secondPlayer = createPlayer("Otto", "o")
+
+console.table(board)
+
+while (hasWon(firstPlayer) == false && hasWon(secondPlayer) == false) {
+  move(firstPlayer)
+  if (hasWon(firstPlayer)) {
+    console.log(`${firstPlayer.name} has won`)
+  } else {
+    move(secondPlayer)
+  }
+  if (hasWon(secondPlayer)) {
+    console.log(`${secondPlayer.name} has won`)
+  }
+}
 
 function move(player) {
-  let board = gameboard.makeBoard;
-  let moveRow = prompt(`${player.name}, pick a row`);
-  let moveColumn = prompt(`${player.name}, pick a column`);
-  board[moveRow][moveColumn] = player.token;
-  console.table(board);
-  console.log(board[moveRow][moveColumn]);
+  let moveRow = prompt(`${player.name}, pick a row`)
+  let moveColumn = prompt(`${player.name}, pick a column`)
+  board[moveRow][moveColumn] = player.token
+  console.table(board)
 }
 
 function hasWon(player) {
-  let token = player.token;
-  console.table(board);
   if (
-    (board[0][0] === token && board[0][1] === token && board[0][2] === token) ||
-    (board[1][0] === token && board[1][1] === token && board[1][2] === token) ||
-    (board[2][0] === token && board[2][1] === token && board[2][2] === token) ||
-    (board[0][0] === token && board[1][0] === token && board[2][0] === token) ||
-    (board[1][0] === token && board[1][1] === token && board[1][2] === token) ||
-    (board[2][0] === token && board[2][1] === token && board[2][2] === token) ||
-    (board[0][0] === token && board[1][1] === token && board[2][2] === token) ||
-    (board[0][2] === token && board[1][1] === token && board[2][0] === token)
+    (board[0][0] === player.token &&
+      board[0][1] === player.token &&
+      board[0][2] === player.token) ||
+    (board[1][0] === player.token &&
+      board[1][1] === player.token &&
+      board[1][2] === player.token) ||
+    (board[2][0] === player.token &&
+      board[2][1] === player.token &&
+      board[2][2] === player.token) ||
+    (board[0][0] === player.token &&
+      board[1][0] === player.token &&
+      board[2][0] === player.token) ||
+    (board[1][0] === player.token &&
+      board[1][1] === player.token &&
+      board[1][2] === player.token) ||
+    (board[2][0] === player.token &&
+      board[2][1] === player.token &&
+      board[2][2] === player.token) ||
+    (board[0][0] === player.token &&
+      board[1][1] === player.token &&
+      board[2][2] === player.token) ||
+    (board[0][2] === player.token &&
+      board[1][1] === player.token &&
+      board[2][0] === player.token)
   ) {
-    return true;
+    return true
   } else {
-    return false;
+    return false
   }
 }
-
-function displayController() {
-  while (hasWon(firstPlayer) === false && hasWon(secondPlayer) === false);
-  move(firstPlayer);
-  move(secondPlayer);
-}
-
-displayController();
