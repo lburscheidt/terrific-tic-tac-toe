@@ -20,7 +20,18 @@ let secondPlayer = createPlayer('Otto', 'o');
 console.log(firstPlayer);
 console.log(firstPlayer.token);
 
-function hasWon(token) {
+function move(player) {
+  let board = gameboard.makeBoard;
+  let moveRow = prompt(`${player.name}, pick a row`);
+  let moveColumn = prompt(`${player.name}, pick a column`);
+  board[moveRow][moveColumn] = player.token;
+  console.table(board);
+  console.log(board[moveRow][moveColumn]);
+}
+
+function hasWon(player) {
+  let token = player.token;
+  console.table(board);
   if (
     (board[0][0] === token && board[0][1] === token && board[0][2] === token) ||
     (board[1][0] === token && board[1][1] === token && board[1][2] === token) ||
@@ -37,30 +48,10 @@ function hasWon(token) {
   }
 }
 
-/*
-function move(token) {
-  let board = createGameboard();
-  console.table(board);
-  let moveRow = prompt('Row');
-  let moveColumn = prompt('Column');
-  board[moveRow][moveColumn] = token;
-  console.table(board);
+function displayController() {
+  while (hasWon(firstPlayer) === false && hasWon(secondPlayer) === false);
+  move(firstPlayer);
+  move(secondPlayer);
 }
 
-
-}
-
-/*function createDisplayController() {
-  /*if (
-      gameboard[moveRow][moveColumn] !== 'o' &&
-      gameboard[moveRow][moveColumn] !== 'x'
-    ) {
-      gameboard[moveRow][moveColumn] = token;
-    }
-    else{
-
-    }
-}
-*/ /*
-
-/*move('x');*/
+displayController();
