@@ -1,3 +1,5 @@
+let currentPlayer = ""
+
 const gameboard = (function () {
   let grid = document.querySelector(".gameboard")
   for (let i = 0; i < 3; i++) {
@@ -13,57 +15,77 @@ const gameboard = (function () {
   }
   return grid
 })()
-let board = gameboard.grid
 
 function createPlayer(name, token) {
   return { name, token }
 }
-let firstPlayer = createPlayer("Max", "x")
-let secondPlayer = createPlayer("Otto", "o")
 
-/*
-const gameFlow = (function () {
-  let board = gameboard.makeBoard
-  let firstPlayer = createPlayer("Max", "<i class='fa-solid fa-x'></i>")
-  let secondPlayer = createPlayer("Otto", "<i class='fa-solid fa-o'></i>")
-  /*
-  let firstPlayer = createPlayer("Max", "x")
-  let secondPlayer = createPlayer("Otto", "o")*/
-/*console.table(board)
+let firstPlayer = createPlayer("Max", "<i class='fa-solid fa-x fa-10x'></i>")
+let secondPlayer = createPlayer("Otto", "<i class='fa-solid fa-o fa-10x'></i>")
+
+function move(cellid) {
+  if (currentPlayer === "") {
+    currentPlayer = firstPlayer
+  }
+  let cell = document.getElementById(cellid)
+  console.log(cell.id)
+  cell.innerHTML = currentPlayer.token
+  if (currentPlayer === firstPlayer) {
+    currentPlayer = secondPlayer
+  } else if (currentPlayer === secondPlayer) {
+    currentPlayer = firstPlayer
+  }
+}
+/*  if (currentPlayer === "") {
+    currentPlayer = firstPlayer
+  }
+  let cell = document.getElementById(cellid)
+ 
+  cell.innerHTML = currentPlayer.token
+  if (currentPlayer === firstPlayer) {
+    currentPlayer = secondPlayer
+  } else if (currentPlayer === secondPlayer) {
+    currentPlayer = firstPlayer
+  }
+}
+
+let board = gameboard.grid
+move()
+/*const gameFlow = (function () {
+  let board = gameboard.grid
 
   function hasWon(player) {
-    if (
-      (board[0][0] === player.token &&
-        board[0][1] === player.token &&
-        board[0][2] === player.token) ||
-      (board[1][0] === player.token &&
-        board[1][1] === player.token &&
-        board[1][2] === player.token) ||
-      (board[2][0] === player.token &&
-        board[2][1] === player.token &&
-        board[2][2] === player.token) ||
-      (board[0][0] === player.token &&
-        board[1][0] === player.token &&
-        board[2][0] === player.token) ||
-      (board[1][0] === player.token &&
-        board[1][1] === player.token &&
-        board[1][2] === player.token) ||
-      (board[2][0] === player.token &&
-        board[2][1] === player.token &&
-        board[2][2] === player.token) ||
-      (board[0][0] === player.token &&
-        board[1][1] === player.token &&
-        board[2][2] === player.token) ||
-      (board[0][2] === player.token &&
-        board[1][1] === player.token &&
-        board[2][0] === player.token)
+   if (
+      (cell.id="00".innerHTML === player.token &&
+        cell.id="01".innerHTML === player.token &&
+        cell.id="02".innerHTML === player.token) ||
+      (cell.id="10".innerHTML === player.token &&
+        cell.id="11".innerHTML === player.token &&
+        cell.id="12".innerHTML === player.token) ||
+      (cell.id="20".innerHTML === player.token &&
+        cell.id="21".innerHTML === player.token &&
+        cell.id="22".innerHTML === player.token) ||
+      (cell.id="00".innerHTML === player.token &&
+        cell.id="10".innerHTML === player.token &&
+        cell.id="20".innerHTML === player.token) ||
+      (cell.id="10".innerHTML === player.token &&
+        cell.id="11".innerHTML === player.token &&
+        cell.id="12".innerHTML === player.token) ||
+      (cell.id="20".innerHTML === player.token &&
+        cell.id="21".innerHTML === player.token &&
+        cell.id="22".innerHTML === player.token) ||
+      (cell.id="00".innerHTML === player.token &&
+        cell.id="11".innerHTML === player.token &&
+        cell.id="22".innerHTML === player.token) ||
+      (cell.id="02".innerHTML === player.token &&
+        cell.id="11".innerHTML === player.token &&
+        cell.id="20".innerHTML === player.token)
     ) {
       return true
     } else {
       return false
     }
   }
-
   function isTied() {
     if (
       (board[0][1] === firstPlayer.token &&
