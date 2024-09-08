@@ -143,7 +143,13 @@ const tictactoe = (function () {
       isTied() === false
     ) {
       cell.innerHTML = currentPlayer.token
+
       cell.disabled = true
+      console.log(cell.outerHTML)
+      console.log(cell.innerHTML)
+      console.log(currentPlayer.token)
+      console.log(firstPlayer.token)
+      console.log(secondPlayer.token)
       if (currentPlayer === firstPlayer) {
         currentPlayer = secondPlayer
         break
@@ -155,8 +161,8 @@ const tictactoe = (function () {
     gameEnds()
   }
 
-  let x_token = 'x' /*'<i class="fa-solid fa-x"></i>'*/
-  let o_token = 'o' /*'<i class="fa-solid fa-o"></i>'*/
+  let x_token = '<i class="fa-solid fa-x fa-10x" aria-hidden="true"></i>'
+  let o_token = '<i class="fa-solid fa-o fa-10x" aria-hidden="true"></i>'
   let firstPlayer = createPlayer('Max', x_token)
   let secondPlayer = createPlayer('Otto', o_token)
   let currentPlayer = firstPlayer
