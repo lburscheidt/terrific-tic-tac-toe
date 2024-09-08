@@ -15,6 +15,12 @@ const gameboard = (function () {
   }
   return { makeBoard }
 })()
-//create players
 
+//create players
+function createPlayer(name, token) {
+  return { name, token }
+}
+
+let firstPlayer = createPlayer("Max", "<i class='fa-solid fa-x fa-10x'></i>")
+let secondPlayer = createPlayer("Otto", "<i class='fa-solid fa-o fa-10x'></i>")
 //game flow
