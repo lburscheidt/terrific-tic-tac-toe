@@ -16,27 +16,9 @@ function createPlayer(name, token) {
 
 const gameFlow = (function () {
   let board = gameboard.makeBoard
-
   let firstPlayer = createPlayer("Max", "x")
   let secondPlayer = createPlayer("Otto", "o")
-
   console.table(board)
-  while (hasWon(firstPlayer) == false && hasWon(secondPlayer) == false) {
-    move(firstPlayer)
-    console.log(`${firstPlayer.name} has placed a token.`)
-    move(secondPlayer)
-    console.log(`${secondPlayer.name} has placed a token.`)
-  }
-  console.log("Game over")
-  /*winningMessage()*/
-
-  function move(player) {
-    let moveRow = prompt(`${player.name}, pick a row`)
-    let moveColumn = prompt(`${player.name}, pick a column`)
-    console.clear()
-    board[moveRow][moveColumn] = player.token
-    console.table(board)
-  }
 
   function hasWon(player) {
     if (
@@ -68,6 +50,27 @@ const gameFlow = (function () {
       return true
     } else {
       return false
+    }
+  }
+
+  while (hasWon(firstPlayer) == false && hasWon(secondPlayer) == false) {
+    move(firstPlayer)
+    if (hasWon(firstPlayer) === true || hasWon(secondPlayer === true)) {
+      break
+    }
+    move(secondPlayer)
+    if (hasWon(firstPlayer) === true || hasWon(secondPlayer === true)) {
+      break
+    }
+  }
+  function move(player) {
+    let moveRow = prompt(`${player.name}, pick a row`)
+    let moveColumn = prompt(`${player.name}, pick a column`)
+    console.clear()
+    board[moveRow][moveColumn] = player.token
+    console.table(board)
+    if (hasWon(player)) {
+      console.log(`${player.name} has won.`)
     }
   }
 })()
