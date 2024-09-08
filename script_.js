@@ -10,6 +10,7 @@ const gameboard = (function () {
   return { makeBoard }
 })()
 
+//Player object
 function createPlayer(name, token) {
   return { name, token }
 }
@@ -21,13 +22,26 @@ let secondPlayer = createPlayer("Otto", "o")
 
 console.table(board)
 
+
+//displayController object
+
+const displayController = (function(){
+    
+})
+
+
+
 while (hasWon(firstPlayer) == false && hasWon(secondPlayer) == false) {
   move(firstPlayer)
-  console.log(`${firstPlayer.name} has placed a token.`)
-  move(secondPlayer)
-  console.log(`${secondPlayer.name} has placed a token.`)
+  if (hasWon(firstPlayer)) {
+    console.log(`${firstPlayer.name} has won`)
+  } else {
+    move(secondPlayer)
+  }
+  if (hasWon(secondPlayer)) {
+    console.log(`${secondPlayer.name} has won`)
+  }
 }
-winningMessage()
 
 function move(player) {
   let moveRow = prompt(`${player.name}, pick a row`)
