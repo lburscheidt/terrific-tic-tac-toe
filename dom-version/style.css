@@ -1,0 +1,27 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gameboard {
+  display: flex;
+  width: 600px;
+  height: 600px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.cell {
+  background-color: lightcoral;
+  border: 1px solid #000;
+  width: 200px;
+  height: 200px;
+}
