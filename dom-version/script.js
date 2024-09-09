@@ -5,7 +5,10 @@ const tictactoe = (function () {
       for (let j = 0; j < 3; j++) {
         const newCell = document.createElement('button')
         newCell.classList.add('cell')
-        newCell.setAttribute('id', `${i}${j}`)
+        newCell.setAttribute(
+          'id',
+          /*('id', `${i}${j}`) */ `_${Number(i) * 3 + Number(j) + 1}`,
+        )
         newCell.addEventListener('click', function () {
           move(newCell.id)
         })
@@ -14,16 +17,6 @@ const tictactoe = (function () {
     }
     return { makeBoard }
   })()
-  let _1 = document.getElementById('00')
-  let _2 = document.getElementById('01')
-  let _3 = document.getElementById('02')
-  let _4 = document.getElementById('10')
-  let _5 = document.getElementById('11')
-  let _6 = document.getElementById('12')
-  let _7 = document.getElementById('20')
-  let _8 = document.getElementById('21')
-  let _9 = document.getElementById('22')
-
   function createPlayer(name, token) {
     return { name, token }
   }
@@ -143,13 +136,7 @@ const tictactoe = (function () {
       isTied() === false
     ) {
       cell.innerHTML = currentPlayer.token
-
       cell.disabled = true
-      console.log(cell.outerHTML)
-      console.log(cell.innerHTML)
-      console.log(currentPlayer.token)
-      console.log(firstPlayer.token)
-      console.log(secondPlayer.token)
       if (currentPlayer === firstPlayer) {
         currentPlayer = secondPlayer
         break
@@ -169,11 +156,11 @@ const tictactoe = (function () {
 
   function gameEnds() {
     if (hasWon(firstPlayer)) {
-      console.log(`${firstPlayer.name} has won`)
+      alert(`${firstPlayer.name} has won`)
     } else if (hasWon(secondPlayer)) {
-      console.log(`${secondPlayer.name} has won`)
+      alert(`${secondPlayer.name} has won`)
     } else if (isTied() === true) {
-      console.log("It's a tie")
+      alert("It's a tie")
     }
   }
 })()
