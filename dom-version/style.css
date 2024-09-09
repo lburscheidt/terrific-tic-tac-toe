@@ -14,7 +14,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 header {
@@ -27,6 +27,23 @@ header {
   background-color: #e6e6e2;
   height: 100px;
   font-size: 1.5rem;
+}
+
+.msg {
+  background-color: aquamarine;
+  color: #000;
+  height: 100px;
+  width: 300px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.hidden {
+  background-color: #fff;
 }
 
 .gameboard {

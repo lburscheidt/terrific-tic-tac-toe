@@ -5,10 +5,7 @@ const tictactoe = (function () {
       for (let j = 0; j < 3; j++) {
         const newCell = document.createElement('button')
         newCell.classList.add('cell')
-        newCell.setAttribute(
-          'id',
-          /*('id', `${i}${j}`) */ `_${Number(i) * 3 + Number(j) + 1}`,
-        )
+        newCell.setAttribute('id', `_${Number(i) * 3 + Number(j) + 1}`)
         newCell.addEventListener('click', function () {
           move(newCell.id)
         })
@@ -156,11 +153,14 @@ const tictactoe = (function () {
 
   function gameEnds() {
     if (hasWon(firstPlayer)) {
-      alert(`${firstPlayer.name} has won`)
+      msg.classList.remove('hidden')
+      msg.innerHTML = `<p>${firstPlayer.name} has won! Press F5 to start a new game.</p>`
     } else if (hasWon(secondPlayer)) {
-      alert(`${secondPlayer.name} has won`)
+      msg.classList.remove('hidden')
+      msg.innerHTML = `<p>${secondPlayer.name} has won! Press F5 to start a new game.</p>`
     } else if (isTied() === true) {
-      alert("It's a tie")
+      msg.classList.remove('hidden')
+      msg.innerHTML = `<p>It's a tie! Press F5 to start a new game.</p>`
     }
   }
 })()
